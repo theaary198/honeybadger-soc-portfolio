@@ -1,0 +1,92 @@
+========================================
+HONEYBADGER LEVEL 5 SOC REPORT
+========================================
+
+Case ID: HB-0003-MIXED-SSH-ACTIVITY
+
+==== SESSION CLASSIFICATION ====
+
+Session: sess001
+Source IP: 10.0.2.15
+Assessment: Likely Benign
+Reason:
+- Internal IP range
+- Simple commands (pwd, ls)
+- No download or execution activity
+- Normal user behavior
+
+Session: sess002
+Source IP: 185.220.101.44
+Assessment: Suspicious / Malicious
+Reason:
+- External IP
+- Root login using weak credentials
+- Recon commands observed
+- Payload download via wget
+- chmod + execution pattern
+
+Session: sess003
+Source IP: 10.0.2.20
+Assessment: Likely Benign (Needs Context)
+Reason:
+- Internal IP
+- Backup-related commands
+- No obvious malicious indicators
+- Could be scheduled/admin activity
+
+Session: sess004
+Source IP: 203.0.113.77
+Assessment: Suspicious / Malicious
+Reason:
+- External IP
+- Weak credentials (admin/admin)
+- File download via curl
+- Execution of downloaded script
+
+
+==== INVESTIGATION PRIORITY ====
+
+High Priority:
+- sess002 (external + root + download + execution)
+- sess004 (external + weak creds + download + execution)
+
+Medium Priority:
+- sess003 (internal but file operations, needs validation)
+
+Low Priority:
+- sess001 (normal user activity, no indicators)
+
+Rationale:
+Priority is based on:
+- External vs internal source
+- Privileged account usage
+- Download and execution behavior
+- Potential impact
+
+
+==== INCIDENT VERDICT ====
+
+Severity: High
+Confidence: High
+
+Summary:
+Multiple SSH sessions were observed, including both benign internal activity and confirmed malicious behavior from external sources.
+
+Key Findings:
+- Two malicious sessions identified (sess002, sess004)
+- External IPs used weak/default credentials (root:toor, admin:admin)
+- Reconnaissance, payload download, and execution patterns observed
+- Internal sessions appear benign but require contextual validation
+
+Assessment:
+This is a mixed-activity dataset containing both normal operations and active intrusion behavior.
+
+Impact:
+- Unauthorized access to system via SSH
+- Execution of externally downloaded payloads
+- Potential system compromise depending on payload behavior
+
+Conclusion:
+Confirmed malicious activity present.
+Immediate investigation and containment required for affected sessions.
+

@@ -1,0 +1,10 @@
+CowrieLogs
+| where eventid == "cowrie.command.input"
+| where input startswith "wget http"
+    or input startswith "wget https"
+    or input startswith "curl http"
+    or input startswith "curl https"
+    or input startswith "chmod +x"
+    or input startswith "./"
+| project timestamp, src_ip, session, input
+| sort by timestamp asc

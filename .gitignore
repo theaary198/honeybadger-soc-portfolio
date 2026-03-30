@@ -1,0 +1,22 @@
+# Python / env
+venv/
+env/
+cowrie-env/
+
+# Logs / temp
+*.log
+*.tmp
+*.swp
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Sensitive / bulky artifacts
+downloads/
+tty/
+evidence/
+
+# Python cache
+__pycache__/
+*.pyc

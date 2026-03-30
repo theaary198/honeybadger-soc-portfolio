@@ -1,0 +1,25 @@
+========================================
+SOC ANALYST PORTFOLIO — INTERVIEW BULLETS
+========================================
+
+What I Built:
+- A hands-on SOC analyst portfolio using SSH intrusion simulations and Cowrie honeypot data.
+
+What I Practiced:
+- Log analysis
+- IOC extraction
+- MITRE ATT&CK mapping
+- Session triage
+- Detection engineering
+- Alert writing
+- Escalation logic
+
+Strongest Talking Points:
+- I can explain how I investigated suspicious SSH behavior from raw logs to final case report.
+- I can explain how I distinguished weak credential abuse from brute-force assumptions.
+- I can explain how I prioritized suspicious sessions in mixed-activity datasets.
+- I can explain how I converted attacker behavior into Sigma, Splunk, and KQL detections.
+
+Best Interview Line:
+"I focused on building practical blue team projects that show how I think through suspicious activity, validate findings, write detections, and communicate investigations clearly."
+

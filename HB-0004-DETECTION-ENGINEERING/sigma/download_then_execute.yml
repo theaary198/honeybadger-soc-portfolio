@@ -1,0 +1,38 @@
+title: Download Then Execute Over SSH Session
+id: hb-download-then-execute
+status: experimental
+description: Detects command-line download activity followed by chmod and execution behavior in Cowrie-style logs.
+author: kali
+date: 2026-03-29
+logsource:
+  product: linux
+  service: ssh
+detection:
+  selection_download:
+    eventid: cowrie.command.input
+    input|contains:
+      - wget http://
+      - wget https://
+      - curl http://
+      - curl https://
+  selection_chmod:
+    eventid: cowrie.command.input
+    input|contains: 'chmod +x'
+  selection_exec:
+    eventid: cowrie.command.input
+    input|startswith: './'
+  condition: selection_download or selection_chmod or selection_exec
+fields:
+  - timestamp
+  - src_ip
+  - session
+  - input
+level: high
+falsepositives:
+  - Admin software installation
+  - Internal test or automation scripts
+tags:
+  - attack.command_and_scripting_interpreter
+  - attack.ingress_tool_transfer
+  - attack.t1059
+  - attack.t1105

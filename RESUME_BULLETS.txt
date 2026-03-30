@@ -1,0 +1,16 @@
+========================================
+SOC ANALYST PORTFOLIO — RESUME BULLETS
+========================================
+
+- Built and analyzed multiple SSH intrusion simulation cases using Cowrie honeypot logs to practice SOC triage, IOC extraction, attack chain reconstruction, and analyst reporting.
+
+- Investigated authentication-related SSH activity and correctly differentiated brute-force assumptions from valid account abuse involving weak/default credentials.
+
+- Performed session-based triage across mixed benign and malicious SSH activity, applying severity assessment, prioritization, and escalation reasoning.
+
+- Mapped observed attacker behavior to MITRE ATT&CK techniques including Valid Accounts, System Information Discovery, File and Directory Discovery, Process Discovery, Ingress Tool Transfer, and Command Execution.
+
+- Created detection engineering content based on observed attacker tradecraft, including Sigma rules, Splunk searches, and KQL queries for SSH intrusion-related behaviors.
+
+- Produced portfolio-ready incident reports, triage notes, escalation summaries, and detection artifacts to simulate junior SOC analyst and blue team workflows.
+

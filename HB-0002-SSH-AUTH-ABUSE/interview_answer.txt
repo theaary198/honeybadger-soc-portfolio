@@ -1,0 +1,26 @@
+========================================
+INTERVIEW ANSWER (SOC SCENARIO)
+========================================
+
+Question:
+"Walk me through how you handled a suspicious SSH alert."
+
+Answer:
+
+In this case, I investigated an alert involving repeated successful SSH logins.
+
+First, I validated the authentication data and observed that multiple successful logins occurred using the same credentials (root:toor) from the same source IP.
+
+I initially considered brute-force activity, but after reviewing the logs, I found no failed login attempts. Based on this, I adjusted my assessment to valid account abuse using weak/default credentials.
+
+Next, I correlated session data and confirmed that access was repeated across multiple sessions, which increased confidence in suspicious behavior.
+
+I evaluated the risk and identified that root account access significantly increases impact, especially when combined with weak credentials.
+
+I then documented triage findings, created detection rules for similar patterns, and prepared an alert summary.
+
+Finally, I escalated the case with clear reasoning, recommending credential rotation, restricting root SSH access, and reviewing related session activity.
+
+Key takeaway:
+Even without brute-force indicators, repeated successful access using weak credentials is a strong detection signal and should be treated seriously.
+

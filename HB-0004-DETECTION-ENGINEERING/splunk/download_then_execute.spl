@@ -1,0 +1,12 @@
+index=* sourcetype=cowrie
+eventid="cowrie.command.input"
+(
+  input="wget http*" OR
+  input="wget https*" OR
+  input="curl http*" OR
+  input="curl https*" OR
+  input="chmod +x*" OR
+  input="./*"
+)
+| table timestamp src_ip session input
+| sort timestamp

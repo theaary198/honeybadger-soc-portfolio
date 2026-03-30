@@ -1,0 +1,38 @@
+========================================
+SOC TRIAGE NOTES
+========================================
+
+Case ID: HB-0002-SSH-BRUTE-PATTERN
+Analyst: kali
+Priority: Medium
+Status: Investigated
+
+Initial Alert:
+Repeated successful SSH access using weak/default credentials.
+
+What Was Observed:
+- Multiple successful SSH logins
+- Same source IP reused
+- Same username and password reused
+- Account used: root
+- No failed login events observed
+
+Initial Assessment:
+This is not supported as brute force due to lack of failed authentication attempts.
+Behavior is more consistent with valid account abuse using weak/default credentials.
+
+Risk:
+- Root account access is high risk
+- Repeated authentication suggests persistent or repeated operator behavior
+- Weak/default credentials create strong exposure
+
+Recommended Next Actions:
+- Review whether SSH root login is authorized
+- Rotate credentials immediately
+- Disable weak/default credentials
+- Review related command activity for post-login behavior
+- Monitor for additional successful sessions
+
+Analyst Conclusion:
+Escalation is justified due to privileged account access and repeated suspicious authentication behavior.
+

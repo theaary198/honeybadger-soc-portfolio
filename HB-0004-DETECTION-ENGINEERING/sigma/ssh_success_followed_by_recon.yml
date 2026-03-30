@@ -1,0 +1,37 @@
+title: SSH Login Followed by Reconnaissance Commands
+id: hb-ssh-success-followed-by-recon
+status: experimental
+description: Detects successful SSH access followed by common reconnaissance commands in Cowrie-style logs.
+author: kali
+date: 2026-03-29
+logsource:
+  product: linux
+  service: ssh
+detection:
+  selection_login:
+    eventid: cowrie.login.success
+  selection_recon:
+    eventid: cowrie.command.input
+    input:
+      - whoami
+      - pwd
+      - uname -a
+      - ls
+      - cat /etc/passwd
+      - ps aux
+  condition: selection_login or selection_recon
+fields:
+  - timestamp
+  - src_ip
+  - session
+  - username
+  - input
+level: medium
+falsepositives:
+  - Normal administrative SSH usage
+  - Internal lab activity
+tags:
+  - attack.discovery
+  - attack.t1082
+  - attack.t1083
+  - attack.t1057
