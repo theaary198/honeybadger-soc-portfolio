@@ -1,4 +1,4 @@
-# Honeybadger SOC Analyst Portfolio
+# Honeybadger Portfolio
 
 A hands-on blue team portfolio built around SSH intrusion simulations, Cowrie honeypot log analysis, SOC triage workflows, and detection engineering.
 
